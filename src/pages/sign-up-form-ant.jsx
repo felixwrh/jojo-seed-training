@@ -1,5 +1,6 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useState } from 'react';
+import RegisterAPI from '../api/register.api';
 import UserApi from '../api/user.api';
 
 const SignUpForm = (props) => {
@@ -7,8 +8,15 @@ const SignUpForm = (props) => {
 
     const [userList, setUserList] = useState([])
 
-    const onFinish = (values) => {
+    const onFinish = async(values) => {
         console.log('Success:', values);
+
+        const postRequest = {
+            email : values.Email,
+            password : values.password
+        }
+        const data = await RegisterAPI.register(postRequest)
+        console.log(data);
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
