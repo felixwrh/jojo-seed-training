@@ -102,3 +102,12 @@ button:hover {
         display: none;
     }
 }
+
+.ant-form-item .ant-form-item-label >label {
+    margin-top: 20px;
+    color: white!important;
+    }
+
+.ant-checkbox-wrapper {
+    color: white!important;
+}

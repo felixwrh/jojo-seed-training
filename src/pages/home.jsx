@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./home.css";
-import SignUpForm from "./sign-up-form";
-import SignInForm from "./sign-in-form";
+import SignUpForm from "./sign-up-form-ant";
+import SignInForm from "./sign-in-form_ant";
 
 const HomePage = (props) => {
 
