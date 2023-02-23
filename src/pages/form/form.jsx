@@ -2,6 +2,8 @@ import { Row, Col, Form, Input, Select, Radio, Space, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import "./form.css";
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { useEffect } from "react";
+import UserApi from "../../api/user.api";
 
 const FormPage = (props) => {
     const navigate = useNavigate();
@@ -13,8 +15,28 @@ const FormPage = (props) => {
         console.log(form.getFieldsValue())
     }
 
+    // On load
+    useEffect(() => {
+        fetchRequest()
+    }, [])
+
+
+    const fetchRequest = async () => {
+        const token = localStorage.getItem("accessToken")
+        console.log(token)
+        const resp = await UserApi.listUsers(7, token)
+        console.log(resp)
+    }
+
+
     return (<div className="background">
-        <div className="form-card">
+
+
+        <button onClick ={()=>{
+            localStorage.removeItem("accessToken")
+            navigate("/")
+        }}>Logout</button>
+        {/* <div className="form-card">
             <div className="form-card-header-section">
                 <h1>Enterprise Form</h1>
             </div>
@@ -110,7 +132,7 @@ const FormPage = (props) => {
                     </Form.Item>
                 </Row>
             </Form>
-        </div>
+        </div> */}
     </div>)
 };
 export default FormPage;

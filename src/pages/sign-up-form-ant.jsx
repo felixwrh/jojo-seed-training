@@ -8,16 +8,21 @@ const SignUpForm = (props) => {
 
     const [userList, setUserList] = useState([])
 
-    const onFinish = async(values) => {
+    const onFinish = async (values) => {
         console.log('Success:', values);
 
         const postRequest = {
-            email : values.Email,
-            password : values.password
+            email: "eve.holt@reqres.in",
+            password: "pistol"
         }
         const data = await RegisterAPI.register(postRequest)
-        console.log(data);
+        const token = data.token
+
+        localStorage.setItem("access_token", token)
     };
+
+
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
@@ -95,7 +100,7 @@ const SignUpForm = (props) => {
                     <div>
                         <Button onClick={async () => {
                             console.log("listing users")
-                            const data = await UserApi.listUsers(2);
+                            const data = await UserApi.listUsers(2, );
                             console.log(data.data)
                             setUserList(data.data)
                         }} style={{ marginTop: 20 }} type="primary">
@@ -104,10 +109,8 @@ const SignUpForm = (props) => {
                     </div>
 
                     <div>
-                        <Button onClick={async () => {
-                            console.log("fetch user by id")
-                            const data = await UserApi.singleUser(7)
-                            console.log(data)
+                        <Button onClick={ () => {
+                            
                         }}
                             style={{ marginTop: 20 }} type="primary">
                             User By id
@@ -116,7 +119,7 @@ const SignUpForm = (props) => {
                     <div>
                         <Button onClick={async () => {
                             console.log("create a new user")
-                            const data = await UserApi.create({name : "Jojo", job : "dataGod"})
+                            const data = await UserApi.create({ name: "Jojo", job: "dataGod" })
                             console.log(data)
                         }} style={{ marginTop: 20 }} type="primary">
                             Create User

@@ -12,7 +12,7 @@ class RegisterAPI {
      */
     static async register(request) {
         const response = await axios.post(ENDPOINT.REGISTER, request);
-        console.log(response.data)
+        return response.data
     }
 }
 

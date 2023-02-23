@@ -6,8 +6,14 @@ class UserApi {
 
     constructor() { }
 
-    static async listUsers(pageNo) {
-        const response = await axios.get(ENDPOINT.LIST_USERS(pageNo));
+    static async listUsers(pageNo, accessToken) {
+        const response = await axios.get(ENDPOINT.LIST_USERS(pageNo), {
+            headers: {
+                'authorization': accessToken,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
         return response.data
     }
 
