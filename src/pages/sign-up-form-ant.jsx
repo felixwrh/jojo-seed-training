@@ -12,8 +12,8 @@ const SignUpForm = (props) => {
         console.log('Success:', values);
 
         const postRequest = {
-            email: "eve.holt@reqres.in",
-            password: "pistol"
+            email: values.Email,
+            password: values.password
         }
         const data = await RegisterAPI.register(postRequest)
         const token = data.token
@@ -63,10 +63,9 @@ const SignUpForm = (props) => {
                     name="Email"
                     style={{ color: "white" }}
                     rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Email!',
-                        },
+                        { required: true, message: 'Please input your username!' },
+                        { pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, message: 'Email Format pls' },
+                        { min: 5, message: 'min 5 chars pls' },
                     ]}
                 >
                     <Input />
@@ -78,10 +77,8 @@ const SignUpForm = (props) => {
                     label="Password"
                     name="password"
                     rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
+                        { required: true, message: 'Please input your username!' },
+                        { min: 5, message: 'min 6 chars pls' },
                     ]}
                 >
                     <Input.Password />
@@ -97,46 +94,10 @@ const SignUpForm = (props) => {
                     <Button style={{ marginTop: 20 }} type="primary" htmlType="submit">
                         Submit
                     </Button>
-                    <div>
-                        <Button onClick={async () => {
-                            console.log("listing users")
-                            const data = await UserApi.listUsers(2, );
-                            console.log(data.data)
-                            setUserList(data.data)
-                        }} style={{ marginTop: 20 }} type="primary">
-                            List User
-                        </Button>
-                    </div>
 
-                    <div>
-                        <Button onClick={ () => {
-                            
-                        }}
-                            style={{ marginTop: 20 }} type="primary">
-                            User By id
-                        </Button>
-                    </div>
-                    <div>
-                        <Button onClick={async () => {
-                            console.log("create a new user")
-                            const data = await UserApi.create({ name: "Jojo", job: "dataGod" })
-                            console.log(data)
-                        }} style={{ marginTop: 20 }} type="primary">
-                            Create User
-                        </Button>
-                    </div>
                 </Form.Item>
             </Form>
-            {/* User View */}
-            {
-                userList.map((elem, index) => {
-                    return <div key={index}>
-                        <img src={elem.avatar} />
-                        <span style={{ display: "block", color: "#fff" }}>{elem.first_name}</span>
-                        <span style={{ display: "block", color: "#fff" }}>{elem.email}</span>
-                    </div>
-                })
-            }
+        
 
         </div >)
 };

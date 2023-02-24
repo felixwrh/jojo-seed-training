@@ -36,7 +36,7 @@ const FormPage = (props) => {
             localStorage.removeItem("accessToken")
             navigate("/")
         }}>Logout</button>
-        {/* <div className="form-card">
+        { <div className="form-card">
             <div className="form-card-header-section">
                 <h1>Enterprise Form</h1>
             </div>
@@ -132,7 +132,7 @@ const FormPage = (props) => {
                     </Form.Item>
                 </Row>
             </Form>
-        </div> */}
+        </div> }
     </div>)
 };
 export default FormPage;

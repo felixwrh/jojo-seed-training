@@ -49,10 +49,9 @@ const SignInForm = (props) => {
         name="email"
         style={{ color: "white" }}
         rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
+          { required: true, message: 'Please input your username!' },
+          { pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, message: 'Email Format pls' },
+          { min: 5, message: 'min 5 chars pls' },
         ]}
       >
         <Input />
@@ -89,14 +88,6 @@ const SignInForm = (props) => {
         <div >
           <Button style={{ marginTop: 20 }} type="primary" htmlType="submit">
             Submit
-          </Button>
-        </div>
-
-
-
-        <div >
-          <Button onClick={() => { listUser() }} style={{ marginTop: 20 }} type="primary" htmlType="submit">
-            Perform an authenticated request - list user
           </Button>
         </div>
 
